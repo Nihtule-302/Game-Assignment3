@@ -9,11 +9,10 @@ public class Chunk : MonoBehaviour
 
     void Update()
     {
-        //calcSpeedNoLimit();
         calcSpeedLimited();
 
 
-        transform.Translate(Vector3.forward*-1*speed * Time.deltaTime); //speed m / sec 
+        transform.Translate(Vector3.forward * -1 * speed * Time.deltaTime); //speed m / sec 
 
         if (transform.position.z < ChunkManager.instance.outOfScreenPostition.z)
         {
@@ -23,16 +22,17 @@ public class Chunk : MonoBehaviour
         Debug.Log(speed);
     }
 
-    void calcSpeedNoLimit() 
-    {
-        speed = speed + (1  * Time.deltaTime);
-    }
 
     void calcSpeedLimited()
     {
-        if (speed < 100)
+        if (speed < ChunkManager.instance.maxSpeed)
         {
             speed = speed + (1 * Time.deltaTime);
+        }
+
+        else if (speed > ChunkManager.instance.maxSpeed)
+        {
+            speed = speed - (1 * Time.deltaTime);
         }
     }
 }

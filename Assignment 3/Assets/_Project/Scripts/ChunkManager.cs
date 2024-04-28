@@ -12,19 +12,18 @@ public class ChunkManager : MonoBehaviour
 
     public static ChunkManager instance;
 
+    public float maxSpeed = 10f;
+
     Vector3 targetPostition;
-   public Vector3 outOfScreenPostition;
+    public Vector3 outOfScreenPostition;
+
     void Start()
     {
-     
-
         instance = this;
         outOfScreenPostition = new Vector3(0, 0, -chunkLength+5f);
         targetPostition = new Vector3(0, 0, (numberOfChunks - 1) * chunkLength);
 
         spawnChunks();
-
-        
     }
 
     void spawnChunks() 

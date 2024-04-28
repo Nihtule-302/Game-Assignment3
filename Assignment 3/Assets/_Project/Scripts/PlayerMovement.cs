@@ -14,30 +14,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float snapDistance;
     [SerializeField] private float jumpForce;
 
-   [Header("Checks")]
-   [SerializeField] private bool isMoving;
-   [SerializeField] private bool isGrounded;
+    [Header("Checks")]
+    [SerializeField] private bool isMoving;
+    [SerializeField] private bool isGrounded;
     
-    // Start is called before the frst frame update
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        // KISS  keep it stupid simple 
+   
         if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x <snapDistance && !isMoving)
         {
-            //TODO Make code to snap to the right
-            // exact constant moves
             isMoving = true;
             LeanTween.moveX(gameObject, transform.position.x +snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
         }
@@ -51,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Jump")>0 && isGrounded)
         {
             isGrounded = false;
-          rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
         }
     }
 
