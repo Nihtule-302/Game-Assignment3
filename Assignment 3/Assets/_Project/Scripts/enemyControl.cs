@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyControl : MonoBehaviour
 {
-    [SerializeField] float speed = 10;
+    [SerializeField] float speed;
 
     int direction = 1;
 

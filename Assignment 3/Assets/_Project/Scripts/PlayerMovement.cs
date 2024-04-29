@@ -9,11 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float snapTime;
     [SerializeField] private float snapDistance;
 
-    
     private bool isMoving;
     private bool isGrounded;
     
-
     void Update()
     {
    
