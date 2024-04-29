@@ -12,7 +12,7 @@ public class Chunk : MonoBehaviour
         calcSpeedLimited();
 
 
-        transform.Translate(Vector3.forward * -1 * speed * Time.deltaTime); //speed m / sec 
+        transform.Translate(Vector3.forward * -1 * speed * Time.deltaTime); 
 
         if (transform.position.z < ChunkManager.instance.outOfScreenPostition.z)
         {
