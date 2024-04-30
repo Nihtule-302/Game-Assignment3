@@ -8,7 +8,11 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField] ChunkManager chunkManager;
     [SerializeField] EnemyControl enemyControl;
 
-
+    void Awake()
+    {
+        chunkManager = GameObject.FindGameObjectWithTag("ChunkManager").GetComponent<ChunkManager>();
+        enemyControl = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyControl>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

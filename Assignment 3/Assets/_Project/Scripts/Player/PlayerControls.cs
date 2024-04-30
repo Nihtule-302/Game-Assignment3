@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
 
     private bool isMoving;
     private bool isGrounded;
+
+    private int movingDirection = 1;
     
     void Update()
     {
@@ -20,13 +22,13 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x < snapDistance && !isMoving)
         {
             isMoving = true;
-            LeanTween.moveX(gameObject, transform.position.x +snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            LeanTween.moveX(gameObject, transform.position.x + (snapDistance * movingDirection), snapTime).setEaseInCubic().setOnComplete(stopMoving);
         }
         
         if(Input.GetAxis("Horizontal")<-0.1f && transform.position.x > -snapDistance && !isMoving)
         {
             isMoving = true;
-            LeanTween.moveX(gameObject, transform.position.x -snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            LeanTween.moveX(gameObject, transform.position.x - (snapDistance * movingDirection), snapTime).setEaseInCubic().setOnComplete(stopMoving);
         }
 
     }
@@ -35,6 +37,15 @@ public class PlayerControls : MonoBehaviour
     {
         isMoving = false;
     }
-    
+
+
+    public void changeToPrimaryCamera() {
+        movingDirection = 1;
+    }
+
+    public void changeToFrontCamera()
+    {
+        movingDirection = -1;
+    }
 
 }
