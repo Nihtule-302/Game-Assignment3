@@ -7,6 +7,14 @@ public class Chunk : MonoBehaviour
 {
     public static float speed;
 
+    ChunkManager chunkManager;
+
+    void Awake()
+    {
+        chunkManager = GameObject.FindGameObjectWithTag("ChunkManager").GetComponent<ChunkManager>();
+        
+    }
+
     void Update()
     {
         calcSpeedLimited();
@@ -14,7 +22,7 @@ public class Chunk : MonoBehaviour
 
         transform.Translate(Vector3.forward * -1 * speed * Time.deltaTime); 
 
-        if (transform.position.z < ChunkManager.instance.outOfScreenPostition.z)
+        if (transform.position.z < chunkManager.outOfScreenPostition.z)
         {
             ChunkManager.instance.reallocate(gameObject);
         }
@@ -25,12 +33,12 @@ public class Chunk : MonoBehaviour
 
     void calcSpeedLimited()
     {
-        if (speed < ChunkManager.instance.maxSpeed)
+        if (speed < chunkManager.maxSpeed)
         {
             speed = speed + (1 * Time.deltaTime);
         }
 
-        else if (speed > ChunkManager.instance.maxSpeed)
+        else if (speed > chunkManager.maxSpeed)
         {
             speed = speed - (1 * Time.deltaTime);
         }

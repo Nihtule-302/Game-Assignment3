@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4915614}
   m_Layer: 0
   m_Name: ChunkManager
-  m_TagString: Untagged
+  m_TagString: ChunkManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,9 +359,10 @@ GameObject:
   - component: {fileID: 393024184}
   - component: {fileID: 393024183}
   - component: {fileID: 393024187}
+  - component: {fileID: 393024188}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,6 +466,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+--- !u!54 &393024188
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393024182}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +720,7 @@ GameObject:
   - component: {fileID: 1540803806}
   - component: {fileID: 1540803811}
   - component: {fileID: 1540803810}
+  - component: {fileID: 1540803812}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -801,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapTime: 0.2
   snapDistance: 2.5
+  audioManager: {fileID: 0}
 --- !u!54 &1540803811
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -828,6 +858,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 114
   m_CollisionDetection: 0
+--- !u!114 &1540803812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540803805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21359793d60684f4586a13f9951731b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chunkManager: {fileID: 4915614}
+  enemyControl: {fileID: 393024187}
 --- !u!1 &1695979656
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,9 +885,10 @@ GameObject:
   - component: {fileID: 1695979659}
   - component: {fileID: 1695979658}
   - component: {fileID: 1695979662}
+  - component: {fileID: 1695979663}
   m_Layer: 0
   m_Name: SlowDownCoin
-  m_TagString: Untagged
+  m_TagString: SlowDownCoin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -947,6 +992,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkManager: {fileID: 4915614}
+--- !u!54 &1695979663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695979656}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1800624700
 GameObject:
   m_ObjectHideFlags: 0

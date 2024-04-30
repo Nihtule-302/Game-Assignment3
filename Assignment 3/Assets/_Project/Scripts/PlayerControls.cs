@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerControls : MonoBehaviour
 {   
     [Header("Gameplay Values")]
     [SerializeField] private float snapTime;
     [SerializeField] private float snapDistance;
+
+    [SerializeField] AudioManager audioManager;
 
     private bool isMoving;
     private bool isGrounded;

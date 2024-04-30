@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
-    AudioManager audioManager;
-    ChunkManager chunkManager;
+    
+    [SerializeField] ChunkManager chunkManager;
+    [SerializeField] EnemyControl enemyControl;
 
-    void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        chunkManager = GameObject.FindGameObjectWithTag("Chunk").GetComponent<ChunkManager>();
-    }
 
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("stop");
+            enemyControl.stop();
+        }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("SlowDownCoin"))
+        {
+            Debug.Log("slowDown");
+            chunkManager.maxSpeed = 10;
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("SlowDownCoin"))
+        {
+            Debug.Log("Fast");
+            chunkManager.maxSpeed = 40;
         }
     }
 }

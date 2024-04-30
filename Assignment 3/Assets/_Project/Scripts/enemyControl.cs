@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyControl : MonoBehaviour
+public class EnemyControl : MonoBehaviour
 {
     [SerializeField] float speed;
 
@@ -23,5 +23,10 @@ public class enemyControl : MonoBehaviour
 
     public void goBack() {
         direction = -1;
+    }
+
+    public void stop()
+    {
+        direction = 0;
     }
 }

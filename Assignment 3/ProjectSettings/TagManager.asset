@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SlowDownCoin
   - Enemy
+  - ChunkManager
   layers:
   - Default
   - TransparentFX

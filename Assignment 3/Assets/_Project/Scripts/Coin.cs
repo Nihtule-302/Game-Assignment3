@@ -8,16 +8,7 @@ public class Coin : MonoBehaviour
 
     
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("we hit somthing");
-        chunkManager.maxSpeed = 10;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        chunkManager.maxSpeed = 40;
-    }
+    
 
 
 }
