@@ -7,6 +7,8 @@ TagManager:
   - SlowDownCoin
   - Enemy
   - ChunkManager
+  - Front Camera
+  - Primary Camera
   layers:
   - Default
   - TransparentFX

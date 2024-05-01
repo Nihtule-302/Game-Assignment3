@@ -14,22 +14,42 @@ public class PlayerControls : MonoBehaviour
     private bool isMoving;
     private bool isGrounded;
 
-    private int movingDirection = 1;
+    private String currentCamera = "primary";
     
     void Update()
     {
-   
-        if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x < snapDistance && !isMoving)
+
+        if (currentCamera.Equals("primary"))
         {
-            isMoving = true;
-            LeanTween.moveX(gameObject, transform.position.x + (snapDistance * movingDirection), snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x < snapDistance && !isMoving)
+            {
+                isMoving = true;
+                LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            }
+
+            if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x > -snapDistance && !isMoving)
+            {
+                isMoving = true;
+                LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            }
         }
-        
-        if(Input.GetAxis("Horizontal")<-0.1f && transform.position.x > -snapDistance && !isMoving)
+
+        if (currentCamera.Equals("front"))
         {
-            isMoving = true;
-            LeanTween.moveX(gameObject, transform.position.x - (snapDistance * movingDirection), snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x > -snapDistance && !isMoving)
+            {
+                isMoving = true;
+                LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            }
+
+            if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x < snapDistance && !isMoving)
+            {
+                isMoving = true;
+                LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+            }
         }
+
+
 
     }
 
@@ -40,12 +60,12 @@ public class PlayerControls : MonoBehaviour
 
 
     public void changeToPrimaryCamera() {
-        movingDirection = 1;
+        currentCamera = "primary";
     }
 
     public void changeToFrontCamera()
     {
-        movingDirection = -1;
+        currentCamera = "front";
     }
 
 }
