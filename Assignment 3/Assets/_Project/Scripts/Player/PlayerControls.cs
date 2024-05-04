@@ -4,58 +4,95 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
-{   
+{
+    AudioManager audioManager;
+    EnemyControl enemyControl;
+    Player player;
+
+    private bool isMoving;
+    private String currentCamera = "primary";
+    private bool isPushingBack = false;
+
     [Header("Gameplay Values")]
     [SerializeField] private float snapTime;
     [SerializeField] private float snapDistance;
 
-    [SerializeField] AudioManager audioManager;
+    private void Awake()
+    {
+        enemyControl = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyControl>();
+        player = GetComponent<Player>();
+    }
 
-    private bool isMoving;
-    private bool isGrounded;
-
-    private String currentCamera = "primary";
-    
     void Update()
     {
-
         if (currentCamera.Equals("primary"))
         {
-            if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x < snapDistance && !isMoving)
-            {
-                isMoving = true;
-                LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
-            }
-
-            if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x > -snapDistance && !isMoving)
-            {
-                isMoving = true;
-                LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
-            }
+            enemyControl.playerNotLooking();
+            handlePrimaryViewMovement();
         }
 
         if (currentCamera.Equals("front"))
         {
-            if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x > -snapDistance && !isMoving)
-            {
-                isMoving = true;
-                LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
-            }
 
-            if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x < snapDistance && !isMoving)
-            {
-                isMoving = true;
-                LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
-            }
+            handleFrontViewMovement();
+            pushBackEnemy();
+
+        }
+    }
+
+    void handlePrimaryViewMovement() 
+    {
+        if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x < snapDistance && !isMoving)
+        {
+            isMoving = true;
+            LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
         }
 
+        if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x > -snapDistance && !isMoving)
+        {
+            isMoving = true;
+            LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+        }
+    }
 
+    void handleFrontViewMovement() 
+    {
+        if (Input.GetAxis("Horizontal") > 0.1f && transform.position.x > -snapDistance && !isMoving)
+        {
+            isMoving = true;
+            LeanTween.moveX(gameObject, transform.position.x - snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+        }
 
+        if (Input.GetAxis("Horizontal") < -0.1f && transform.position.x < snapDistance && !isMoving)
+        {
+            isMoving = true;
+            LeanTween.moveX(gameObject, transform.position.x + snapDistance, snapTime).setEaseInCubic().setOnComplete(stopMoving);
+        }
     }
 
     void stopMoving()
     {
         isMoving = false;
+    }
+
+    void pushBackEnemy() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            enemyControl.goBack();
+            isPushingBack = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            enemyControl.playerNotLooking();
+            isPushingBack = false;
+        }
+
+        if (isPushingBack)
+        {
+            player.takeDamage(0.05f);
+        }
     }
 
 

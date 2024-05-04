@@ -8,7 +8,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] GameObject chunkPrefab;
     [SerializeField] int numberOfChunks;
     [SerializeField] private float chunkZPositionFlag =0;
-    float chunkLength = 19f;
+    [SerializeField] float chunkLength = 15f;
 
     public static ChunkManager instance;
 

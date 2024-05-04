@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    [SerializeField] float speed;
+    Player player;
 
+    [SerializeField] float speed = 40;
     int direction = 1;
-
 
     void Update()
     {
         transform.Translate(Vector3.forward * direction * speed * Time.deltaTime);
-
     }
 
     public void playerNotLooking() {

@@ -40,7 +40,7 @@ public class Chunk : MonoBehaviour
 
         else if (speed > chunkManager.maxSpeed)
         {
-            speed = speed - (1 * Time.deltaTime);
+            speed = speed - (15 * Time.deltaTime);
         }
     }
 }
