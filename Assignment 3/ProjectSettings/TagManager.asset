@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - SlowDownCoin
   - Enemy
   - ChunkManager
   - Front Camera
   - Primary Camera
+  - Ghost
+  - CreateTrigger
+  - Ground
+  - Destroy
   layers:
   - Default
   - TransparentFX
