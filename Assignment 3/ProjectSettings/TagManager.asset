@@ -13,7 +13,6 @@ TagManager:
   - Ground
   - Road
   - Destroy
-  - SlowDownCoin
   layers:
   - Default
   - TransparentFX

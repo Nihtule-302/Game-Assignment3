@@ -26,8 +26,6 @@ public class Chunk : MonoBehaviour
         {
             ChunkManager.instance.reallocate(gameObject);
         }
-
-        Debug.Log(speed);
     }
 
 

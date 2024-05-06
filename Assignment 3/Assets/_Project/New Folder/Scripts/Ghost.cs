@@ -7,13 +7,11 @@ using UnityEngine.Rendering;
 
 public class Ghost : MonoBehaviour
 {
-	public float moveSpeed;
 	public float attackDstThreshold;
 	public float attackLungeDst;
-	public float attackForce;
 	public float attackCooldownTime;
 	public Color attackCol;
-	public float shieldDuration;
+	public float attacklerpTime = 2;
 
 	[Header("Particle settings")]
 	public ComputeShader ghostCompute;
@@ -25,6 +23,7 @@ public class Ghost : MonoBehaviour
 	public float orbitRadiusMultiplier = 1;
 	public float moveToTargetSpeed = 5;
 	public float attackLungeSpeed = 10;
+	
 
 
 	Material materialInstance;
@@ -117,18 +116,29 @@ public class Ghost : MonoBehaviour
 			Vector3 targetPos = new Vector3(playerPos2D.x, targetHeight, playerPos2D.y);
 			Vector3 dirToPlayer = (targetPos - transform.position).normalized;
 
-
 			float dstToPlayer = (XZ(transform.position) - playerPos2D).magnitude;
 			if (dstToPlayer < attackDstThreshold)
 			{
-
 				attacking = true;
-				Vector3 lungeEndPos = targetPos + dirToPlayer * attackLungeDst;
-				lungeEndPos.y = targetHeight + 0.5f;
-				transform.position = lungeEndPos;
-				attackStartTime = Time.time;
 
+				// Calculate the lerp position
+				Vector3 lerpEndPos = targetPos + dirToPlayer * attackLungeDst;
+				lerpEndPos.y = targetHeight + 0.5f;
+
+				
+				float t = Mathf.Clamp01(Time.deltaTime / attacklerpTime); // Ensure t stays within [0, 1]
+
+				// Lerp the position
+				transform.position = Vector3.Lerp(transform.position, lerpEndPos, t);
+
+				// Set the final position
+				if (t >= 1.0f)
+				{
+					transform.position = lerpEndPos;
+					attackStartTime = Time.time;
+				}
 			}
+
 		}
 	}
 

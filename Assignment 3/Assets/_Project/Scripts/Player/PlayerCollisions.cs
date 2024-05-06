@@ -30,8 +30,9 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("SlowDownCoin"))
+        if (other.gameObject.CompareTag("Ghost"))
         {
+            Debug.Log("that hurt");
             chunkManager.maxSpeed = 10;
             player.takeDamage(20);
         }
@@ -40,7 +41,7 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("SlowDownCoin"))
+        if (other.gameObject.CompareTag("Ghost"))
         {
             chunkManager.maxSpeed = 40;
         }
