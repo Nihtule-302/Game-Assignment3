@@ -9,10 +9,11 @@ TagManager:
   - Front Camera
   - Primary Camera
   - Ghost
-  - CreateTrigger
-  - Ground
-  - Road
   - Destroy
+  - Coin
+  - Ground
+  - Audio
+  - Win
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Post Procesing
   - 
   - 
   - 
